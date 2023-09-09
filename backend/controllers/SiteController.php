@@ -2,12 +2,15 @@
 
 namespace backend\controllers;
 
+use backend\models\AppleAR;
 use common\models\LoginForm;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
+
+require_once ('../models/appleState.php');
 
 /**
  * Site controller
@@ -56,17 +59,18 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Главная страница.
      *
      * @return string
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $apples = AppleAR::findExistsApples();
+        return $this->render('apple', ['apples' => $apples]);
     }
 
     /**
-     * Login action.
+     * Авторизация.
      *
      * @return string|Response
      */

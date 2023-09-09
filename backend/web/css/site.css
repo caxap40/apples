@@ -88,3 +88,24 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+/*----------------*/
+.apple {
+    height: 150px;
+    width: 150px;
+    padding: 10px 5px;
+    overflow: hidden;
+    border: black solid 1px;
+}
+.harvest {
+    width: 350px;
+}
+button {
+    font-size: small;
+    border: black dotted 1px;
+    border-radius: 5px;
+}
+input {
+    margin-left: 3px;
+    width: 50px;
+}
