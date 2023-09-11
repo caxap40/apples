@@ -9,7 +9,7 @@ use yii\db\ActiveRecord;
  *
  * @property integer $id
  * @property string $color цвет яблока
- * @property string $size остаток яблок (<= 1)
+ * @property string $size остаток яблока (<= 1)
  * @property string $birth_date время "рождения"
  * @property string $fall_date время падения
  */
@@ -43,13 +43,4 @@ class AppleAR extends ActiveRecord
         }
         return $apples;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    /*public function getId()
-    {
-        return $this->getPrimaryKey();
-    }*/
-
 }

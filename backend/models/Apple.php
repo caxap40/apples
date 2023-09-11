@@ -6,6 +6,7 @@ use yii\base\Model;
 
 /**
  * Apple модель/класс
+ * для пакетного исполнения. Интерактивное взаимодействие реализовано через контроллер.
  */
 class Apple extends Model
 {
@@ -21,9 +22,9 @@ class Apple extends Model
         parent::init();
 
         if ($color) $this->color = $color;
-        else $this->color = sprintf('#%02X%02X%02X', rand(0, 255), rand(0, 255), rand(0, 255));
+        else $this->color = sprintf('#%02X%02X%02X', mt_rand(0, 255), mt_rand(0, 255), mt_rand(0, 255));
 
-        $this->birth_date = rand(time()-60*60*5, time());   // делать испорченные бессмысленно
+        $this->birth_date = mt_rand(time()-60*60*24*7, time());   // за неделю
 
         $this->insertApple();
     }
@@ -67,7 +68,7 @@ class Apple extends Model
         if ($this->state === \appleState::rotten)  throw new \Exception('Лучше не кушать - оно гнилое');
         if ($this->state === \appleState::deleted)  throw new \Exception('Яблоко уже съедено!');
 
-        if ($this->size*100 <= $percent) $this->size = 0;
+        if ($this->size*100 <= $percent)  $this->size = 0;
         else $this->size -= $percent/100;
 
         $this->updateApple();
@@ -109,7 +110,7 @@ class Apple extends Model
         $apple = AppleAR::findOne($this->id);
         $apple->size = $this->size;
         $apple->fall_date = $this->fall_date;
-        $apple->state = $this->state;
+        $apple->state = $this->state->value;
         return $apple->save();
     }
 
